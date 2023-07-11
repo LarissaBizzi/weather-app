@@ -92,7 +92,6 @@ const cities = [
         const nightTemperature = nightWeather.temp2m;
 
         const dayConditions = dayWeather.weather;
-        const nightConditions = nightWeather.weather;
 
         const weatherImageSrc = `images/${dayConditions}.png`;
 
@@ -100,8 +99,7 @@ const cities = [
           <h2>${currentDate}</h2>
           <p>Day Temperature: ${dayTemperature}°C</p>
           <p>Night Temperature: ${nightTemperature}°C</p>
-          <p>Day Conditions: ${dayConditions}</p>
-          <p>Night Conditions: ${nightConditions}</p>
+          <p>Weather conditions now: ${dayConditions}</p>
           <img src="${weatherImageSrc}" alt="Weather Image">
         `;
 
