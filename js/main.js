@@ -110,8 +110,8 @@ const cities = [
       });
   }
 
-  function mapWeatherCondition(condition) {
-    const conditionMap = {
+  function mapWeatherCondition(dayConditions) {
+    const dayConditionsMap = {
       clear: 'Clear',
       clearnight: 'Clear Night',
       clearday: 'Clear Day',
@@ -141,5 +141,5 @@ const cities = [
       tstorm: 'Thunderstorm',
       windy: 'Windy'
     };
-    return conditionMap[condition] || condition;
+    return dayConditionsMap[dayConditions] || dayConditions;
   }
