@@ -75,7 +75,7 @@ const cities = [
       redirect: 'follow'
     };
 
-    fetch(`http://www.7timer.info/bin/api.pl?lon=${lon}&lat=${lat}&product=civil&output=json`, requestOptions)
+    fetch(`https://www.7timer.info/bin/api.pl?lon=${lon}&lat=${lat}&product=civil&output=json`, requestOptions)
       .then(response => response.json())
       .then(data => {
         const weatherInfo = document.getElementById("weatherInfo");
@@ -108,4 +108,38 @@ const cities = [
       .catch(error => {
         console.error('Error:', error);
       });
+  }
+
+  function mapWeatherCondition(condition) {
+    const conditionMap = {
+      clear: 'Clear',
+      clearnight: 'Clear Night',
+      clearday: 'Clear Day',
+      cloudy: 'Cloudy',
+      cloudyday: 'Cloudy Day',
+      cloudynight: 'Cloudy Night',
+      fog: 'Fog',
+      humid: 'Humid',
+      ishower: 'Isolated Shower',
+      lightrain: 'Light Rain',
+      lightrainday: 'Light Rain Day',
+      lightsnow: 'Light Snow',
+      mcloudyday: 'Mostly Cloudy Day',
+      mcloudynight: 'Mostly Cloudy Night',
+      oshower: 'Occasional Shower',
+      oshowernight: 'Occasional Shower Night',
+      pcloudy: 'Partly Cloudy',
+      pcloudyday: 'Partly Cloudy Day',
+      ptcloudynight: 'Partly Cloudy Night',
+      rain: 'Rain',
+      rainsnow: 'Rain Snow',
+      showers: 'Showers',
+      snow: 'Snow',
+      thunderstorm: 'Thunderstorm',
+      tsday: 'Thunderstorm Day',
+      tsrain: 'Thunderstorm and Rain',
+      tstorm: 'Thunderstorm',
+      windy: 'Windy'
+    };
+    return conditionMap[condition] || condition;
   }
