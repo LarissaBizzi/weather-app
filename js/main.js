@@ -1,16 +1,11 @@
 const cities = [
-  { name: "London", lon: "-0.1276", lat: "51.5074" },
-  { name: "Paris", lon: "2.3522", lat: "48.8566" },
-  { name: "Berlin", lon: "13.4050", lat: "52.5200" },
-  { name: "Rome", lon: "12.4964", lat: "41.9028" },
-  { name: "Madrid", lon: "-3.7038", lat: "40.4168" },
   { name: "Athens", lon: "23.7275", lat: "37.9838" },
-  { name: "Vienna", lon: "16.3738", lat: "48.2082" },
   { name: "Amsterdam", lon: "4.904", lat: "52.367", country: "Netherlands" },
   { name: "Ankara", lon: "32.859", lat: "39.933", country: "Turkey" },
   { name: "Åstorp", lon: "12.945", lat: "56.134", country: "Sweden" },
   { name: "Belfast", lon: "-5.930", lat: "54.597", country: "Northern Ireland" },
   { name: "Barcelona", lon: "2.168", lat: "41.387", country: "Spain" },
+  { name: "Berlin", lon: "13.4050", lat: "52.5200" },
   { name: "Bern", lon: "7.447", lat: "46.948", country: "Switzerland" },
   { name: "Bilbao", lon: "-2.935", lat: "43.263", country: "Spain" },
   { name: "Brussels", lon: "4.357", lat: "50.847", country: "Belgium" },
@@ -34,6 +29,8 @@ const cities = [
   { name: "Kyiv", lon: "30.523", lat: "50.450", country: "Ukraine" },
   { name: "Lillehammer", lon: "10.466", lat: "61.115", country: "Norway" },
   { name: "Lisbon", lon: "-9.139", lat: "38.722", country: "Portugal" },
+  { name: "London", lon: "-0.1276", lat: "51.5074" },
+  { name: "Madrid", lon: "-3.7038", lat: "40.4168" },
   { name: "Manchester", lon: "-2.242", lat: "53.480", country: "England" },
   { name: "Marseille", lon: "5.369", lat: "43.296", country: "France" },
   { name: "Maspalomas", lon: "-15.586", lat: "27.760", country: "Spain" },
@@ -42,9 +39,11 @@ const cities = [
   { name: "Naples", lon: "14.268", lat: "40.851", country: "Italy" },
   { name: "Oñati", lon: "-2.417", lat: "43.034", country: "Spain" },
   { name: "Oslo", lon: "10.752", lat: "59.913", country: "Norway" },
+  { name: "Paris", lon: "2.3522", lat: "48.8566" },
   { name: "Prague", lon: "14.437", lat: "50.075", country: "Czech Republic" },
   { name: "Reykjavík", lon: "-21.942", lat: "64.146", country: "Iceland" },
   { name: "Riga", lon: "24.603", lat: "56.879", country: "Latvia" },
+  { name: "Rome", lon: "12.4964", lat: "41.9028" },
   { name: "Santa Cruz das Flores", lon: "-31.127", lat: "39.453", country: "Portugal" },
   { name: "Santa Cruz de Tenerife", lon: "-16.251", lat: "28.463", country: "Spain" },
   { name: "Skye", lon: "-6.215", lat: "57.273", country: "Scotland" },
@@ -91,9 +90,9 @@ const cities = [
         const dayTemperature = dayWeather.temp2m;
         const nightTemperature = nightWeather.temp2m;
 
-        const dayConditions = dayWeather.weather;
+        const { mapped: dayConditions } = mapWeatherCondition(dayWeather.weather);
 
-        const weatherImageSrc = `images/${dayConditions}.png`;
+        const weatherImageSrc = `images/${mapWeatherCondition(dayWeather.weather).raw}.png`;
 
         const weatherHTML = `
           <h2>${currentDate}</h2>
@@ -112,34 +111,34 @@ const cities = [
 
   function mapWeatherCondition(dayConditions) {
     const dayConditionsMap = {
-      clear: 'Clear',
-      clearnight: 'Clear Night',
-      clearday: 'Clear Day',
-      cloudy: 'Cloudy',
-      cloudyday: 'Cloudy Day',
-      cloudynight: 'Cloudy Night',
-      fog: 'Fog',
-      humid: 'Humid',
-      ishower: 'Isolated Shower',
-      lightrain: 'Light Rain',
-      lightrainday: 'Light Rain Day',
-      lightsnow: 'Light Snow',
-      mcloudyday: 'Mostly Cloudy Day',
-      mcloudynight: 'Mostly Cloudy Night',
-      oshower: 'Occasional Shower',
-      oshowernight: 'Occasional Shower Night',
-      pcloudy: 'Partly Cloudy',
-      pcloudyday: 'Partly Cloudy Day',
-      ptcloudynight: 'Partly Cloudy Night',
-      rain: 'Rain',
-      rainsnow: 'Rain Snow',
-      showers: 'Showers',
-      snow: 'Snow',
-      thunderstorm: 'Thunderstorm',
-      tsday: 'Thunderstorm Day',
-      tsrain: 'Thunderstorm and Rain',
-      tstorm: 'Thunderstorm',
-      windy: 'Windy'
+      cloudy: { mapped: 'Cloudy', raw: 'cloudy' },
+      cloudyday: { mapped: 'Cloudy Day', raw: 'cloudyday' },
+      cloudynight: { mapped: 'Cloudy Night', raw: 'cloudynight' },
+      fog: { mapped: 'Fog', raw: 'fog' },
+      humid: { mapped: 'Humid', raw: 'humid' },
+      humidnight: { mapped: 'Humid Night', raw: 'humidnight'},
+      ishower: { mapped: 'Isolated Shower', raw: 'ishower' },
+      ishowernight: { mapped: 'Isolated Shower Night', raw: 'ishowernight'},
+      lightrain: { mapped: 'Light Rain', raw: 'lightrain' },
+      lightrainday: { mapped: 'Light Rain Day', raw: 'lightrainday' },
+      lightsnow: { mapped: 'Light Snow', raw: 'lightsnow' },
+      mcloudyday: { mapped: 'Mostly Cloudy Day', raw: 'mcloudyday' },
+      mcloudynight: { mapped: 'Mostly Cloudy Night', raw: 'mcloudynight' },
+      oshower: { mapped: 'Occasional Shower', raw: 'oshower' },
+      oshowernight: { mapped: 'Occasional Shower Night', raw: 'oshowernight' },
+      pcloudy: { mapped: 'Partly Cloudy', raw: 'pcloudy' },
+      pcloudyday: { mapped: 'Partly Cloudy Day', raw: 'pcloudyday' },
+      ptcloudynight: { mapped: 'Partly Cloudy Night', raw: 'ptcloudynight' },
+      rain: { mapped: 'Rain', raw: 'rain' },
+      rainsnow: { mapped: 'Rain Snow', raw: 'rainsnow' },
+      showers: { mapped: 'Showers', raw: 'showers' },
+      snow: { mapped: 'Snow', raw: 'snow' },
+      thunderstorm: { mapped: 'Thunderstorm', raw: 'thunderstorm' },
+      tsday: { mapped: 'Thunderstorm Day', raw: 'tsday' },
+      tsnight: { mapped: 'Thunderstorm Night', raw: 'tsnight'},
+      tsrain: { mapped: 'Thunderstorm and Rain', raw: 'tsrain' },
+      tstorm: { mapped: 'Thunderstorm', raw: 'tstorm' },
+      windy: { mapped: 'Windy', raw: 'windy' },
     };
-    return dayConditionsMap[dayConditions] || dayConditions;
+    return dayConditionsMap[dayConditions] || { mapped: dayConditions, raw: dayConditions };
   }
