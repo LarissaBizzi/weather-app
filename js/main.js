@@ -111,6 +111,8 @@ const cities = [
 
   function mapWeatherCondition(dayConditions) {
     const dayConditionsMap = {
+      clearday: { mapped: 'Clear Day', raw: 'clearday'},
+      clearnight: { mapped: 'Clear Night', raw: 'clearnight'},
       cloudy: { mapped: 'Cloudy', raw: 'cloudy' },
       cloudyday: { mapped: 'Cloudy Day', raw: 'cloudyday' },
       cloudynight: { mapped: 'Cloudy Night', raw: 'cloudynight' },
